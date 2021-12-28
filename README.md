@@ -339,14 +339,19 @@ Like Processing and p5.js, Love provides a function for generating pseudorandom 
 
 ### Example demonstrating keypressed function, conditionals and random number generation and Love syntax
 
-In this example pressing a space key down stores a random number between 100 and 500 in the variable num.
+In this example pressing a space key down chooses a new random number for x, used to draw an ellipse in love.draw()
 
 ```
+function love.load()
+  x = love.graphics.getWidth()/2
+end
 function love.keypressed(key)
-    --If space is pressed then..
-    if key == "space" then
-        num = math.random(100, 500)
-    end
+  if key == 'space' then
+    x = love.math.random(love.graphics.getWidth())
+  end
+end
+function love.draw()
+  love.graphics.ellipse("line",x,love.graphics.getHeight()/2,20,20)
 end
 ```
 
