@@ -48,6 +48,9 @@ end
 
 Then drag and drop the *folder* holding this file (not the main.lua file itself) onto your Love application to launch it.
 
+![hello world window, white text on a black screen](images/hello-world.jpg)  
+*Black screen with white text "hello world" roughly in the center*  
+
 I'm on Linux running in the command line so to run this I can simply run ```love .``` inside that folder to launch it. (See the [getting started](https://love2d.org/wiki/Getting_Started) for more options)
 
 ### Default window size
@@ -83,16 +86,8 @@ end
 
 Now save and run this program (drag the folder onto the Love application or run in the command line). If you have no errors you should see a black window 600 pixels wide by 800 pixels high with a white rectangle in the upper left corner. These colors and screen size are the defaults for Love.
 
-
-### Basic structure of a Love program
-
-In Processing and p5.js we usually have setup and draw functions. In Love, we have load, update and draw.
-
-The function ```love.load()``` runs once when the program starts, similar to the setup function in Processing and p5.js.
-
-The function ```love.update(dt)``` runs continously until our program ends. This is where we may call our own custom functions from, take input, or otherwise control our program. You may have noticed that update takes an argument *dt*. That stands for *delta time*. This is the number of seconds since the last time the update run. It is used to precisely calculate the exact amount of time and make adjustments, one of the things that makes Love particularly good for video games, where precision of time (for a clock, reaching a goal, physics, etc) is important.
-
-Finally, ```love.draw()``` happens immediately after our update and this is where we draw any graphics to the screen. In Processing and p5.js these two functions are combined together but Love has us separate the two. **Graphics can only be drawn to the screen in draw**. In fact, as you've seen in our hello world example program, you can have a draw without a load or update, but without draw you won't be able to see anything on screen.
+![white rectangle in the top left corner of a black screen](images/rectangle.jpg)  
+*A white rectangle in the top left corner of a black screen*  
 
 ### A bite of syntax
 
@@ -112,6 +107,8 @@ multi-line comment.
 ```
 
 *You'll notice that most commands in Love start with ```love.```* This helps distinguish Love-specific functions from general Lua commands and your own custom written functions. It is a different approach from Processing or p5.js (for example, you don't have to write ```p5.ellipse(100,50,200,50);``` in p5.js.
+
+In general, you'll notice Love (and Lua, the language it's built on) does away with curly brackets and the like in favor of ending blocks of code with the word *end*.
 
 ### Working in color
 
@@ -136,6 +133,8 @@ function love.draw()
 end
 ```
 
+![a black screen with red and white text](images/colored-text.jpg)
+
 To set a background color we use the clear command. This resets to a black transparent background, e.g. to the color (0,0,0,0).
 
 ```
@@ -144,13 +143,13 @@ function love.draw()
 end
 ```
 
-If we want to specify a background color we can use R, G, B and set a transparency. 
+If we want to specify a background color we can use R, G, B and optionally set an alpha (transparency). 
 
 To set a background color of green:
 
 ```
 function love.draw()
-  love.graphics.clear(0,1,0,1)
+  love.graphics.clear(0,1,0)
 end
 ```
 
@@ -176,15 +175,21 @@ function love.draw()
 end
 ```
 
+![two ellipses on a black screen. The ellipses on the left is made up of less line segments than the ellipses on the right](images/ellipses.jpg)  
+*Two ellipses on a black screen. The ellipses on the left is made up of less line segments than the ellipses on the right.*  
+
 Run the program and notice the difference in how the ellipses are drawn based on the larger number of segments used in the second ellipse.
 
-Example line:
+Line:
 
 ```
 function love.draw()
   love.graphics.line(100, 100, 200, 200)
 end
 ```
+
+![a white line from the top left corner down and to the right, on a black background](images/line.jpg)  
+*a white line from the top left corner down and to the right*  
 
 Many additional shapes (triangle, quads, etc) can be created using the polygon function.
 
@@ -196,7 +201,20 @@ function love.draw()
 end
 ```
 
+![a red equilateral triangle on a black screen](images/triangle.jpg)  
+*red equilateral triangle on a black screen*  
+
 More shapes can be found in the [drawing](https://love2d.org/wiki/love.graphics) section of the Love Wiki.
+
+### Basic structure of a Love program
+
+In Processing and p5.js we usually have setup and draw functions. In Love, we have load, update and draw.
+
+The function ```love.load()``` runs once when the program starts, similar to the setup function in Processing and p5.js.
+
+The function ```love.update(dt)``` runs continously until our program ends. This is where we may call our own custom functions from, take input, or otherwise control our program. You may have noticed that update takes an argument *dt*. That stands for *delta time*. This is the number of seconds since the last time the update run. It is used to precisely calculate the exact amount of time and make adjustments, one of the things that makes Love particularly good for video games, where precision of time (for a clock, reaching a goal, physics, etc) is important.
+
+Finally, ```love.draw()``` happens immediately after our update and this is where we draw any graphics to the screen. In Processing and p5.js these two functions are combined together but Love has us separate the two. **Graphics can only be drawn to the screen in love.draw()**. In fact, as you've seen in our previous example programs, you can have a love.draw() without a love.load() or love.update(), but without love.draw() you won't be able to see anything on screen.
 
 ### Variables
 
@@ -222,6 +240,9 @@ function love.draw()
 end
 ```
 
+![black screen with a bit of text in red, x: with the current framenumber](images/framecounter.jpg)  
+*screenshot of running sketch*  
+
 ### Functions
 
 Love (and Lua in general) does not use curly brackets to surround functions, conditionals and loops for example.
@@ -234,9 +255,17 @@ function myFunctionName(argument)
 end
 ```
 
-Like Processing and p5.js you need to call any custom function you write from one of the built-in Love functions love.load(), love.update() or love.draw().
+In addition to the love.load(), love.update() and love.draw() built-in functions there are also:
+* love.mousePressed()
+* love.mouseReleased()
+* love.keyPressed()
+* love.keyReleased()
+* love.focus() - anything in this function runs when a user clicks outside the game's running window
+* love.quit() - runs once when a user clicks the close button or chooses Quit
 
-In addition 
+All of these function run as a result of an event triggering. 
+
+There are many other [callback functions](https://love2d.org/wiki/Category:Callbacks) available in Love as well as a [tutorial](https://love2d.org/wiki/Tutorial:Callback_Functions) with examples.
 
 ### Example of motion
 
@@ -255,6 +284,34 @@ function love.draw()
 end
 ```
 
+![a screenshot of a white rectangle on black background](images/moving.jpg)  
+*screenshot of a moving white rectangle on a black background*  
+
+### Syntax of conditionals and loops
+
+Conditionals such as an if statement in Love come from Lua. They are similar to conditionals in other languages, bearing in mind that the conditional block ends with the word ```end``` instead of curly brackets.
+
+```
+function love.load()
+  x = 0
+  width=love.graphics.getWidth()
+  height=love.graphics.getHeight()
+end
+
+function love.update()
+  x=x+10
+  if x > width then
+    x = 0
+  end
+end
+
+function love.draw()
+  love.graphics.ellipse("fill",x,height/2,10,10)
+end
+```
+
+Love (and Lua) also permit use of complex [if-then-elseif-else](https://www.tutorialspoint.com/lua/if_else_statement_in_lua.htm) structure, but there is no equivalent to Javascript's Switch.
+
 ### Using the mouse
 
 In Processing and p5.js we are used to the mouseX and mouseY built-in variables for getting the location of the mouse's X and Y coordinates.
@@ -268,6 +325,17 @@ function love.draw()
   love.graphics.line(x,0, x,love.graphics.getHeight())
 end
 ```
+
+### Random values
+
+Like Processing and p5.js, Love provides a function for generating pseudorandom values.
+
+```love.math.random()``` returns a float between 0 and 1. 
+
+
+```love.math.random(value)``` returns an integer between 1 and the entered value, inclusive.
+
+```love.math.random(min,max)``` returns an integer between the minimum and the maximum values entered, inclusive. 
 
 ### Example demonstrating keypressed function, conditionals and random number generation and Love syntax
 
@@ -294,7 +362,8 @@ Images are objects, so we can optionally use :getWidth() and :getHeight().
 
 ```
 function love.load()
-  img = love.graphics.newImage("sloth.jpg") 
+  --load image logo.png inside current folder to img
+  img = love.graphics.newImage("logo.png") 
   -- make cursor invisible
   love.mouse.setVisible(false)
 end
@@ -308,19 +377,66 @@ function love.draw()
 end
 ```
 
-### More differences from Processing (Java) and p5.js (Javascript)
+![screenshot of Love's logo moving based on mouse coordinates](images/moving-logo.jpg)  
+*screenshot of Love's logo moving based on mouse coordinates*  
 
-To combine strings, we use the .. syntax.
+## More differences from Processing (Java) and p5.js (Javascript)
 
-In p5.js:
+### String Concatenation
+
+To combine strings of letters together we use the ```..``` syntax.
+
 ```
+//this is p5.js
 text("My name is "+name,50,50);
 ```
 
-In Love:
-````
+```
+--This is the equivalent in Love
 love.graphics.print("My name is "..name, 50, 50)
 ```
+
+### For-Loops
+
+```
+for init,max_value,amount_to_increment
+do
+   --action to do in the loop
+end
+```
+
+The amount_to_increment is implied if the amount is 1.
+
+For example, to count up to ten
+
+```
+for i = 1,10
+do 
+   print(i) 
+end
+```
+
+### Arrays and Classes via Tables
+
+Tables are the main data structure of Lua.
+
+To create a literal array:
+
+```
+animals = {"croc","bug","wolf","fox"}
+```
+
+**Arrays are 1-indexed!** In the above example, ```animals[1]``` is "croc".
+
+To get an array length, use #.
+
+```
+total_animals = #animals 
+```
+
+Tables can be used similar to Javascript objects.
+
+Classes are a bit beyond the scope of this introduction. Like arrays they are also created out of tables. There are several approaches. Check out the [Classes](https://sheepolution.com/learn/book/11) tutorial in the How to Love online book.
 
 ### To distribute programs
 
