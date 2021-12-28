@@ -14,7 +14,7 @@ Just as p5.js is a library in Javascript and Processing is a framework in Java, 
 
 Although Love contains libraries for drawing to the screen similar to Processing, it is intended for the creation of games. It is particularly useful for making 2d games with tiles.
 
-You may also want to Love out if you're interested in trying something new, learning a new language that is applicable to many other tools (Roblox, Playdate, Pico-8, Tic-80, and many more), and interested in a program that works fast and is cross-compatible on many computers. 
+You may also want to use Love if you're interested in trying something new, learning a new language that is applicable to many other tools (Roblox, Playdate, Pico-8, Tic-80, and many more), and interested in a program that works fast and is cross-compatible on many computers. 
 
 ### Who makes Love?
 
