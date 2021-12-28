@@ -399,34 +399,44 @@ love.graphics.print("My name is "..name, 50, 50)
 ### For-Loops
 
 ```
-for init,max_value,amount_to_increment
+for counter=init,max_value,amount_to_increment
 do
    --action to do in the loop
 end
 ```
 
-The amount_to_increment is implied if the amount is 1.
+The amount_to_increment is optional if the amount is 1.
 
-For example, to count up to ten
+Example of a for-loop:
 
 ```
-for i = 1,10
-do 
-   print(i) 
+function love.load()
+  width = love.graphics.getWidth()
+end
+
+function love.draw()
+  for i = 1,width,30
+  do 
+     love.graphics.setColor(i/255,i/255,200/255)
+     love.graphics.ellipse("fill",i,300,20,20)
+  end
 end
 ```
 
+![a black background with ellipses in a gradient running blue to pale yellow across the screen](images/gradient.jpg)  
+*a black background with ellipses in a gradient running blue to pale yellow across the screen*  
+
 ### Arrays and Classes via Tables
 
-Tables are the main data structure of Lua.
+Tables are the main data structure of Lua. They work like *dictionaries* with a key and value. We can create many structures like arrays and classes from tables.
 
-To create a literal array:
+To create a table that works like a literal array:
 
 ```
 animals = {"croc","bug","wolf","fox"}
 ```
 
-**Arrays are 1-indexed!** In the above example, ```animals[1]``` is "croc".
+**All arrays are 1-indexed!** In the above example, ```animals[1]``` is "croc".
 
 To get an array length, use #.
 
