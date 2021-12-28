@@ -2,6 +2,8 @@
 
 Notes and examples for getting started coding in [LÖVE](https://love2d.org/) aka Love aka Love2d for folks with previous experience in Processing, p5.js and the like.
 
+This introduction assumes you have some previous experience in programming with Processing or p5.js and are curious about Love and Lua. This is not a comprehensive tutorial for Lua or even Love but simply an entry point.
+
 ### What is Love?
 
 Love is a free, open source framework to make games in the Lua language and works on Mac, Windows, Linux, iOS, Android. There is a [wiki](https://love2d.org/wiki/Main_Page) with documentation, including a reference and a number of [additional libraries](https://love2d.org/wiki/Category:Libraries) and tutorials.
@@ -98,16 +100,6 @@ To write a comment in Love, we put ```--``` at the beginning of the line.
 
 ```
 -- This is a comment
-```
-
-Love (and Lua in general) does not use curly brackets to surround functions, conditionals and loops for example.
-
-Instead of a curly bracket a function in Love ends with the word ```end```.
-
-```
-function myFunctionName(argument)
-  -- function code in here
-end
 ```
 
 We can do multi-line comments in Lua, particularly useful for turning on and off sections of our code when we're debugging.
@@ -230,6 +222,22 @@ function love.draw()
 end
 ```
 
+### Functions
+
+Love (and Lua in general) does not use curly brackets to surround functions, conditionals and loops for example.
+
+Instead of a curly bracket a function in Love ends with the word ```end```.
+
+```
+function myFunctionName(argument)
+  -- function code in here
+end
+```
+
+Like Processing and p5.js you need to call any custom function you write from one of the built-in Love functions love.load(), love.update() or love.draw().
+
+In addition 
+
 ### Example of motion
 
 ```
@@ -346,6 +354,10 @@ When you're ready to distribute your program you will zip up the folder and rena
 * [Falling in Love with Lua](https://www.youtube.com/watch?v=3k4CMAaNCuk) YouTube video and [slides](https://docs.google.com/presentation/d/1K3GN5827gbqQZJzKu43kXPaW2cTkJWja8WWbrv2Wnmc/edit#slide=id.p), a tutorial on building a basic procedurally generated version of Mario in Love
 * Basic [Physics tutorial](https://love2d.org/wiki/Tutorial:Physics)
 * Love [Tile Tutorial](https://github.com/kikito/love-tile-tutorial/wiki) to make  tile-based game
+
+## Contributing
+
+I mostly have experience with Processing and p5.js and more limited experience with Love and Lua. Feel free to submit an issue, pull request or get in touch via email with any corrections or suggestions.
 
 # License
 
