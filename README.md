@@ -1,6 +1,6 @@
 # From Processing (and p5.js) to Love
 
-Notes and examples for getting started coding in [LÖVE](https://love2d.org/) aka Love aka Love2d for folks with previous experience in Processing, p5.js and the like.
+Notes and examples for getting started coding in [LÖVE](https://love2d.org/) (aka Love aka Love2d) for folks with previous experience in Processing, p5.js and the like.
 
 This introduction assumes you have some previous experience in programming with Processing or p5.js and are curious about Love and Lua. This is not a comprehensive tutorial for Lua or even Love but simply an entry point.
 
@@ -12,9 +12,9 @@ Just as p5.js is a library in Javascript and Processing is a framework in Java, 
 
 ### Why use Love?
 
-Although Love contains libraries like Processing for drawing to the screen Love is intended for the creation of games. It is particularly useful for making 2d games with tiles.
+Although Love contains libraries for drawing to the screen similar to Processing, it is intended for the creation of games. It is particularly useful for making 2d games with tiles.
 
-You may also want to try this out if you're interested in trying something new, learning a new language that is applicable to many other tools (Roblox, Playdate, Pico-8, Tic-80, and many more), and interested in a program that works fast and is cross-compatible on many computers. 
+You may also want to Love out if you're interested in trying something new, learning a new language that is applicable to many other tools (Roblox, Playdate, Pico-8, Tic-80, and many more), and interested in a program that works fast and is cross-compatible on many computers. 
 
 ### Who makes Love?
 
