@@ -18,7 +18,7 @@ You may also want to use LÖVE if you're interested in trying something new, lea
 
 ### Who makes LÖVE?
 
-LÖVE is a programming language originally released in 2008. The developers are listed as Anjo, Bartbes, Rude, Slime, Vrld. The project is collaboratively managed on [GitHub](https://github.com/love2d/love) with additional contributions from dozens of other contributors.
+LÖVE was originally released in 2008. The developers are listed as Anjo, Bartbes, Rude, Slime, Vrld. The project is collaboratively managed on [GitHub](https://github.com/love2d/love) with additional contributions from dozens of other contributors.
 
 ### Download LÖVE
 
