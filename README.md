@@ -40,7 +40,7 @@ Let's create a basic hello world program to test we're up and running.
 
 Save this into your main.lua:
 
-```
+```lua
 function love.draw()
   love.graphics.print('Hello World!', 400, 300)
 end
@@ -67,7 +67,7 @@ Let's get some shapes onto the screen.
 
 In Processing and p5.js we might write a basic program like this:
 
-```
+```js
 //p5.js code
 function draw(){
   rect(20,10,50,80);
@@ -78,7 +78,7 @@ In p5.js no setup means that a default canvas size of 100 by 100 will be created
 
 Let's write a similar program in LÖVE.  You can erase the previous main.lua and try this
 
-```
+```lua
 function love.draw()
     love.graphics.rectangle("fill", 20, 10, 50, 80)
 end
@@ -93,13 +93,13 @@ Now save and run this program (drag the folder onto the LÖVE application or run
 
 To write a comment in LÖVE, we put ```--``` at the beginning of the line.
 
-```
+```lua
 -- This is a comment
 ```
 
 We can do multi-line comments in Lua, particularly useful for turning on and off sections of our code when we're debugging.
 
-```
+```lua
 --[[
 An example of a 
 multi-line comment.
@@ -114,14 +114,14 @@ In general, you'll notice LÖVE (and Lua, the language it's built on) does away 
 
 In Processing or p5.js you can write ```fill(number)``` to specify a grayscale value. In LÖVE you must specify all three R,G,B values. **Unlike Processing, in current version of LÖVE color values must vary from 0 to 1 instead of 0 to 255.**
 
-```
+```lua
 --to set a black fill
 love.graphics.setColor(0,0,0)
 ```
 
 An example:
 
-```
+```lua
 function love.draw()
    --set to white
    love.graphics.setColor(1,1,1)
@@ -137,7 +137,7 @@ end
 
 To set a background color we use the clear command. This resets to a black transparent background, e.g. to the color (0,0,0,0).
 
-```
+```lua
 function love.draw()
   love.graphics.clear()
 end
@@ -147,7 +147,7 @@ If we want to specify a background color we can use R, G, B and optionally set a
 
 To set a background color of green:
 
-```
+```lua
 function love.draw()
   love.graphics.clear(0,1,0)
 end
@@ -157,7 +157,7 @@ end
 
 Ellipse:
 
-```
+```lua
 function love.draw()
   love.graphics.ellipse( mode, x, y, radiusx, radiusy, segments )
 end
@@ -167,7 +167,7 @@ Unlike in Processing and p5.js you must specify the *mode*, either *fill* or *li
 
 Example ellipses:
 
-```
+```lua
 function love.draw()
   love.graphics.ellipse("line",100,200,50,100,5)
 
@@ -182,7 +182,7 @@ Run the program and notice the difference in how the ellipses are drawn based on
 
 Line:
 
-```
+```lua
 function love.draw()
   love.graphics.line(100, 100, 200, 200)
 end
@@ -193,7 +193,7 @@ end
 
 Many additional shapes (triangle, quads, etc) can be created using the polygon function.
 
-```
+```lua
 function love.draw()
   love.graphics.setColor(1,0,0)
 
@@ -224,7 +224,7 @@ Unlike Processing but similar to p5.js, you do not need to specify a variable's 
 
 Javascript and Java have the ++ shortcut, known as *syntactic sugar* to increment a variable. Lua does not.
 
-```
+```lua
 function love.load()
     x = 0 
 end
@@ -249,7 +249,7 @@ LÖVE (and Lua in general) does not use curly brackets to surround functions, co
 
 Instead of a curly bracket a function in LÖVE ends with the word ```end```.
 
-```
+```lua
 function myFunctionName(argument)
   -- function code in here
 end
@@ -269,7 +269,7 @@ There are many other [callback functions](https://love2d.org/wiki/Category:Callb
 
 ### Example of motion
 
-```
+```lua
 -- example moving a shape on screen
 function love.load()
     x = 100 
@@ -291,7 +291,7 @@ end
 
 Conditionals such as an if statement in LÖVE come from Lua. They are similar to conditionals in other languages, bearing in mind that the conditional block ends with the word ```end``` instead of curly brackets.
 
-```
+```lua
 function love.load()
   x = 0
   width=love.graphics.getWidth()
@@ -318,7 +318,7 @@ In Processing and p5.js we are used to the mouseX and mouseY built-in variables 
 
 LÖVE provides the getX() and getY() functions.
 
-```
+```lua
 function love.draw()
   --move mouse on screen to see result
   local x = love.mouse.getX()
@@ -337,11 +337,17 @@ Like Processing and p5.js, LÖVE provides a function for generating pseudorandom
 
 ```love.math.random(min,max)``` returns an integer between the minimum and the maximum values entered, inclusive. 
 
+**Important**: Unlike Processing and p5.js, LÖVE doesn't seed the random number generator by default. This means that it will always return the same random numbers if you run the same code! Since most of the time you may want different random numbers each time you run your software, simply add the following line near the beginning of your `love.load()` function, which will use the current time to seed the random number generator.
+
+```lua
+math.randomseed(os.time())
+```
+
 ### Example demonstrating keypressed function, conditionals and random number generation and LÖVE syntax
 
 In this example pressing a space key down chooses a new random number for x, used to draw an ellipse in love.draw()
 
-```
+```lua
 function love.load()
   x = love.graphics.getWidth()/2
 end
@@ -365,7 +371,7 @@ Images are objects, so we can optionally use :getWidth() and :getHeight().
 
 **The color of an image is affected by any previous setColor() command**.
 
-```
+```lua
 function love.load()
   --load image logo.png inside current folder to img
   img = love.graphics.newImage("logo.png") 
@@ -391,19 +397,19 @@ end
 
 To combine strings of letters together we use the ```..``` syntax.
 
-```
+```js
 //this is p5.js
 text("My name is "+name,50,50);
 ```
 
-```
+```lua
 --This is the equivalent in LÖVE
 love.graphics.print("My name is "..name, 50, 50)
 ```
 
 ### For-Loops
 
-```
+```lua
 for counter=init,max_value,amount_to_increment
 do
    --action to do in the loop
@@ -414,7 +420,7 @@ The amount_to_increment is optional if the amount is 1.
 
 Example of a for-loop:
 
-```
+```lua
 function love.load()
   width = love.graphics.getWidth()
 end
@@ -437,7 +443,7 @@ Tables are the main data structure of Lua. They work like *dictionaries* with a 
 
 To create a table that works like a literal array:
 
-```
+```lua
 animals = {"croc","bug","wolf","fox"}
 ```
 
@@ -445,7 +451,7 @@ animals = {"croc","bug","wolf","fox"}
 
 To get an array length, use #.
 
-```
+```lua
 total_animals = #animals 
 ```
 
@@ -456,7 +462,6 @@ Classes are a bit beyond the scope of this introduction. Like arrays they are al
 ### To distribute programs
 
 When you're ready to distribute your program you will zip up the folder and rename the extension .zip to .love to create an executable Windows exe file, a Mac App, or Linux AppImage. [additional info](https://love2d.org/wiki/Game_Distribution#Create_a_.love-file)
-
 
 ### Built-in functionality in LÖVE
 
@@ -478,8 +483,8 @@ When you're ready to distribute your program you will zip up the folder and rena
 * [Obey_love](https://twitter.com/obey_love) official Twitter account of LÖVE
 * Tutorial on setting up LÖVE in [Visual Studio Code](https://twitter.com/obey_love) 
 
-
 ### Tutorials
+
 * [How to LÖVE](https://sheepolution.com/learn/book/contents) comprehensive and beginner-friendly book on LÖVE by Sheepolution 
 * [Conditionals](https://sheepolution.com/learn/book/6), [Tables and For-Loops](https://sheepolution.com/learn/book/7), [Classes](https://sheepolution.com/learn/book/11) from How To LÖVE
 * [Falling in LÖVE with Lua](https://www.youtube.com/watch?v=3k4CMAaNCuk) YouTube video and [slides](https://docs.google.com/presentation/d/1K3GN5827gbqQZJzKu43kXPaW2cTkJWja8WWbrv2Wnmc/edit#slide=id.p), a tutorial on building a basic procedurally generated version of Mario in LÖVE
