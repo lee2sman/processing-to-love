@@ -349,6 +349,7 @@ In this example pressing a space key down chooses a new random number for x, use
 
 ```lua
 function love.load()
+  math.randomseed(os.time())
   x = love.graphics.getWidth()/2
 end
 function love.keypressed(key)
@@ -458,6 +459,14 @@ total_animals = #animals
 Tables can be used similar to Javascript objects.
 
 Classes are a bit beyond the scope of this introduction. Like arrays they are also created out of tables. There are several approaches. Check out the [Classes](https://sheepolution.com/learn/book/11) tutorial in the How to LÖVE online book.
+
+### Compiled / interpreted / synchronous / asynchronous ?
+
+Java is compiled to bytecode. When you 'run' a Processing program it produces a jar file. If there is a bug such as a syntax error, your program won't compile and therefore won't run. Once the program is compiled and run, code executes linearly.
+
+Javascript is *interpreted*. Your script.js file written in p5.js starts to load and is run when the web page that links to the code is visited. Because Javascript was designed to be run in a browser, it is tolerant of speed issues for example, and parts of a website may load and run before other parts are received, not necessarily in order from 'top to bottom' for example. In our sketch file in p5.js we can deal with this by loading media files in our preload() function, which ensures all media is loaded before our setup() and draw() run. We don't need to do this in Processing.
+
+Lua is compiled to bytecode and then interpreted by a virtual machine. LÖVE is implemented in Lua. Like Processing, a program will execute linearly 'top to bottom.' The Lua language allows for asyncronous processes through [coroutines](https://peerdh.com/blogs/programming-insights/using-coroutines-for-asynchronous-state-management-in-love2d-1).
 
 ### To distribute programs
 
